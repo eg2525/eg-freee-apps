@@ -5,7 +5,7 @@ from io import BytesIO
 
 def app1():
     # Streamlitアプリのタイトル
-    st.title('開始残高インポート用')
+    st.title('開始残高インポート')
 
     # ファイルアップロードのセクション
     uploaded_file = st.file_uploader("テキストファイルをアップロードしてください", type=['txt'])
