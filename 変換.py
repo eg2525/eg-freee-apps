@@ -4,7 +4,7 @@ from io import BytesIO
 
 def app2():
     # Streamlitアプリのタイトル
-    st.title('仕訳データ変換')
+    st.title('仕訳インポート')
 
     # ファイルアップロードのセクション
     uploaded_file = st.file_uploader("ファイルをアップロードしてください", type=['csv'])
