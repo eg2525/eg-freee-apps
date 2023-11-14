@@ -2,24 +2,28 @@ import streamlit as st
 import 残高試算表
 import 変換
 
-# 初期化（初めて実行するときに、これらのキーがセッション状態に追加される）
-if 'show_app1' not in st.session_state:
-    st.session_state.show_app1 = True  # 残高試算表アプリを表示するかどうか
-if 'show_app2' not in st.session_state:
-    st.session_state.show_app2 = True  # 変換アプリを表示するかどうか
-
 st.title('EG_R4→freee変換_home')
 
-# アプリ選択用のボタン
-if st.button('残高試算表'):
-    st.session_state.show_app1 = True
-    st.session_state.show_app2 = False
-if st.button('仕訳'):
-    st.session_state.show_app1 = False
-    st.session_state.show_app2 = True
+# セッション状態の初期化
+if 'current_app' not in st.session_state:
+    st.session_state['current_app'] = None  # 現在表示するアプリを保持する変数
 
-# 選択されたアプリを表示
-if st.session_state.show_app1:
+# ボタンが押されたときのアクションを定義する
+def show_app1():
+    st.session_state['current_app'] = 'app1'
+
+def show_app2():
+    st.session_state['current_app'] = 'app2'
+
+# アプリ選択用のボタン
+col1, col2 = st.columns(2)
+with col1:
+    st.button('残高試算表', on_click=show_app1)
+with col2:
+    st.button('仕訳', on_click=show_app2)
+
+# 選択されたアプリに基づいて表示を変更
+if st.session_state['current_app'] == 'app1':
     残高試算表.app1()
-if st.session_state.show_app2:
+elif st.session_state['current_app'] == 'app2':
     変換.app2()
