@@ -8,4 +8,4 @@ st.title('EG_R4→freee変換_home')
 if st.button('残高試算表'):
     残高試算表.app1()
 elif st.button('仕訳'):
-    app2.run()
+    変換.app2()
