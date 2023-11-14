@@ -16,10 +16,10 @@ def show_app2():
     st.session_state['current_app'] = 'app2'
 
 # アプリ選択用のボタン
-if st.button('残高試算表'):
+if st.button('残高試算表(txtファイル)'):
     show_app1()
 
-if st.button('仕訳'):
+if st.button('仕訳(csvファイル)'):
     show_app2()
 
 # 選択されたアプリを表示
