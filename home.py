@@ -37,4 +37,4 @@ elif st.session_state['current_app'] == 'app2':
     変換.app2()
 # app3が選択された時の処理を追加します
 elif st.session_state['current_app'] == 'app3':
-    app3.app3()
+    仕訳インポート.app3()
