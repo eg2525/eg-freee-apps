@@ -328,11 +328,11 @@ def app2():
               return int((row['貸方金額'] / 108) * 8)
 
         # アップロードされたCSVファイルから"借方インボイス情報"と"貸方インボイス情報"の列を取得する
-        df_with_headers["借方インボイス情報"] = df["借方インボイス情報"]
-        df_with_headers["貸方インボイス情報"] = df["貸方インボイス情報"]
+        df_with_headers["借方税区分"] = df["借方インボイス情報"]
+        df_with_headers["貸方税区分"] = df["貸方インボイス情報"]
 
         # "借方インボイス情報"と"貸方インボイス情報"をチェックし、必要に応じて税区分を更新する
-        for index, row in df_with_headers.iterrows():
+        for index, row in df.iterrows():
             # 借方インボイス情報が8の場合、借方税区分に"(控80)"を追加
             if row["借方インボイス情報"] == 8:
                 df_with_headers.at[index, "借方税区分"] += "(控80)"
