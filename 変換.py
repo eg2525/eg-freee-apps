@@ -327,18 +327,27 @@ def app2():
             elif row['貸方消費税税率'] == "K8.0":
               return int((row['貸方金額'] / 108) * 8)
 
-        # dfを使用して税額を計算し、df_with_headersに'借方税額'として追加
-        df_with_headers['貸方税額'] = df.apply(calculate_tax_amount, axis=1)
-
         # "借方インボイス情報"と"貸方インボイス情報"に基づき、df_with_headersの税区分を更新する
         for index, row in df.iterrows():
-            # 借方インボイス情報が8の場合、df_with_headersの借方税区分に"(控除80)"を追加
-            if row["借方インボイス情報"] == 8:
-                df_with_headers.at[index, "借方税区分"] += " (控80)"
+            try:
+                # 借方インボイス情報を整数に変換
+                debit_invoice_info = int(row["借方インボイス情報"])
+                # 値が8の場合、借方税区分に"(控80)"を追加
+                if debit_invoice_info == 8:
+                    df_with_headers.at[index, "借方税区分"] += " (控80)"
+            except (ValueError, TypeError):
+                # 変換できない場合は無視
+                pass
 
-            # 貸方インボイス情報が8の場合、df_with_headersの貸方税区分に"(控除80)"を追加
-            if row["貸方インボイス情報"] == 8:
-                df_with_headers.at[index, "貸方税区分"] += " (控80)"
+            try:
+                # 貸方インボイス情報を整数に変換
+                credit_invoice_info = int(row["貸方インボイス情報"])
+                # 値が8の場合、貸方税区分に"(控80)"を追加
+                if credit_invoice_info == 8:
+                    df_with_headers.at[index, "貸方税区分"] += " (控80)"
+            except (ValueError, TypeError):
+                # 変換できない場合は無視
+                pass
 
         # CSVファイルとしてユーザーにダウンロードを提供する関数
         def convert_df_to_csv(df):
