@@ -3,7 +3,7 @@ import pandas as pd
 from io import BytesIO
 
 def app3():
-    st.title("償却資産インポート")
+    st.title("固定資産台帳インポート")
 
     st.markdown("""
     	#### 減価償却R4からの出力手順
