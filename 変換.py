@@ -41,6 +41,9 @@ def app2():
         df_with_headers["借方金額"] = df["借方金額"]
         df_with_headers["貸方金額"] = df["貸方金額"]
         df_with_headers["摘要"] = df["摘要"]
+        df_with_headers["貸方部門"] = df["貸方部門名"]
+        df_with_headers["借方部門"] = df["借方部門名"]
+
 
         def encodeable_in_shift_jis(value):
             # 文字列でない場合はそのまま返す
